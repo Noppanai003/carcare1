@@ -17,10 +17,8 @@ declare const $ : any;
     styleUrls: ['./members.component.css'],
     providers: [MemberService]
 })
-export class MembersComponent implements IMembersComponent,OnInit {
-    ngOnInit(){
-        this.initializeLoadScript();
-    }
+export class MembersComponent implements IMembersComponent {
+
     // โหลดตัว Bootstrap jquery
     private initializeLoadScript(){
         // Activate tooltip
@@ -67,17 +65,6 @@ export class MembersComponent implements IMembersComponent,OnInit {
 
         // this.initialzeLoadData();
     }
-    // ******************************************
-    // โหลดข้อมูลครั้งแรก
-    // private initialzeLoadData(){
-    //     this.httpClient
-    //     .post(this.backendURL, null)
-    //     .subscribe(result => {
-    //         console.log(result);
-    //     });
-    // }
-    // ******************************************
-
 
     items: IMember;
 

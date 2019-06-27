@@ -3,7 +3,7 @@
         <tr>
             <th>
                 <span class="custom-checkbox">
-                  <input type="checkbox" id="selectAll">
+                  <input type="checkbox" [(ngModel)]="checkAll" (ngModelChange)="onCheckAll()">
                   <label for="selectAll"></label>
               </span>
             </th>
@@ -19,8 +19,7 @@
             <!-- เรียกใช้ ngFor -->
             <td>
                 <span class="custom-checkbox">
-                  <input type="checkbox" id="checkbox1" name="options[]"
-                      value="1">
+                  <input type="checkbox" [(ngModel)]="item.checked" (ngModelChange)="onCheck()">
                   <label for="checkbox1"></label>
               </span>
             </td>
@@ -29,10 +28,10 @@
             <td>{{ item.mem_address || '-'}}</td>
             <td>{{ item.mem_phone }}</td>
             <td>
-                <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                <a href="#editEmployeeModal" class="edit" data-toggle="modal" (click)="onEditModal(item)">
                     <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                 </a>
-                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
+                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" (click)="onDeleteModal(item)">
                     <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                 </a>
             </td>

@@ -16,6 +16,8 @@ import { GetComponent } from './components/members/get/get.component';
 import { PostComponent } from './components/members/post/post.component';
 import { PutComponent } from './components/members/put/put.component';
 import { DeleteComponent } from './components/members/delete/delete.component';
+import { TooltipDirective } from './components/directives/tooltip.directive';
+import { DeleteAllComponent } from './components/members/delete-all/delete-all.component';
 
 @NgModule({
     imports: [
@@ -37,7 +39,9 @@ import { DeleteComponent } from './components/members/delete/delete.component';
         GetComponent,
         PostComponent,
         PutComponent,
-        DeleteComponent
+        DeleteComponent,
+        TooltipDirective,
+        DeleteAllComponent
     ]
 })
 export class AuthenticationModule { }

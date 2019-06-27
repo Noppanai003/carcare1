@@ -18,3 +18,4 @@ else
     http_response_code(404); //ถ้าไม่มีก็แจ้ง
     echo json_encode(['message' => 'Page not found.']);
 }
+

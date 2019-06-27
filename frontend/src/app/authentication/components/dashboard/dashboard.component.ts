@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 declare const $;
 declare const Chart;
 
@@ -8,8 +9,22 @@ declare const Chart;
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+    backendTestURL = 'http://localhost:9000/test.php/api/test'; 
 
-    constructor() { }
+    constructor(private httpClient: HttpClient) {
+        // this.initialLoadData();
+     }
+
+    // // โหลดข้อมูลเข้ามาครั้งแรก
+    // private initialLoadData(){
+
+    //     this.httpClient
+    //     .post(this.backendTestURL, { message: 'Request xxx to Frontend'}) // แปะ เพื่อส่งค่าจาก Frontend ไป Backend
+    //     .subscribe(result => {
+    //         console.log(result);
+    //     });
+
+    // }
 
     ngOnInit() {
         this.initialLoadChartJS();
