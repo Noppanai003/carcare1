@@ -49,17 +49,21 @@ export interface IMember {
   mem_phone: string;
   mem_created?: string;
   mem_updated?: string;
-  p_password?: any;
-  p_cpassword?: any;
-  p_service_name?: any;
-  p_id_card?: any;
-  p_photo_service?: any;
-  p_business_license?: any;
-  p_lat?: any;
-  p_long?: any;
+  mem_password?: any;
+  mem_cpassword?: any;
+  mem_service_name?: any;
+  mem_detials?: any;
+  mem_id_card?: any;
   cr_by?: any;
   upd_by?: any;
   is_active?: any;
+  mem_province?: any;
+  mem_canton?: any;
+  mem_district?: any;
+  mem_photo_service?: any;
+  mem_business_license?: any;
+  mem_lat?: any;
+  mem_long?: any;
 
   checked?: boolean; // สำหรับ Checkbox
 }

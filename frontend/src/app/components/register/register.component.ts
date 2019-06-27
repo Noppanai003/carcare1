@@ -6,6 +6,7 @@ import { AlertService } from '../../shareds/services/alert.service';
 import { AccountService } from 'src/app/shareds/services/account.service';
 import { Router } from '@angular/router';
 import { ValidatorsService } from 'src/app/shareds/services/validators.service';
+import { MemberRegisterService, IMember } from './member-register.service';
 declare let $;
 @Component({
     selector: 'app-register',
@@ -15,7 +16,7 @@ declare let $;
 export class RegisterComponent implements IRegisterComponent {
 
     // สร้าง model เอาไว้เก็บค่าที่อยู่ใน Input
-    public model = {
+    public model: IMember = {
         mem_fname: '',
         mem_lname: '',
         mem_id_card: '',
@@ -34,21 +35,35 @@ export class RegisterComponent implements IRegisterComponent {
     };
 
     constructor(
-        private builder: FormBuilder,
+        private member_registerService: MemberRegisterService,
+        // private builder: FormBuilder,
         private alert: AlertService,
-        private validators: ValidatorsService
+        // private validators: ValidatorsService
         // private account: AccountService,
-        // private router: Router,
+        private router: Router,
     ) {
-        this.initialCreateFormData();
+        // this.initialCreateFormData();
     }
 
     Url = AppURL;
     form: FormGroup;
 
-    // ลงทะเบียน
+    // ส่งข้อมูลไปบันทึกที่ฝั่ง Backend
     public onSubmit() {
-        console.log(this.model);
+
+        // console.log(this.model);
+
+        this.member_registerService
+            .postItem(this.model)
+            .subscribe(
+                result => {
+                    console.log(result);
+                },
+                excep => alert(excep.error.message)
+            );
+        this.alert.notify('ลงทะเบียนสำเร็จ!', 'info');  // ลงทะเบียนสำำเร็จให้ แสดง alert
+        this.router.navigate(['/', AppURL.Login]);  // เด้งไปที่หน้า login
+
         // if (this.form.invalid)
         //     return this.alert.someting_wrong();
         //     // ส่งข้อมูลหา server
@@ -62,15 +77,15 @@ export class RegisterComponent implements IRegisterComponent {
     }
 
     // สร้างฟอร์ม
-    private initialCreateFormData() {
-        this.form = this.builder.group({
-            firstname: ['', [Validators.required]],
-            lastname: ['', [Validators.required]],
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, this.validators.isPassword]],
-            cpassword: ['', [Validators.required, this.validators.comparePassword('password')]]
-        });
-    }
+    // private initialCreateFormData() {
+    //     this.form = this.builder.group({
+    //         firstname: ['', [Validators.required]],
+    //         lastname: ['', [Validators.required]],
+    //         email: ['', [Validators.required, Validators.email]],
+    //         password: ['', [Validators.required, this.validators.isPassword]],
+    //         cpassword: ['', [Validators.required, this.validators.comparePassword('password')]]
+    //     });
+    // }
 
     // สร้าง validate เอง รหัสผ่านให้ตรงกัน ย้ายไป validators.service.ts
     // private comparePassword(passwordField: string) {
